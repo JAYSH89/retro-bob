@@ -1,0 +1,49 @@
+[versions]
+kotlin = "1.9.23"
+springVersion = "3.2.5"
+dependencyManagementVersion = "1.1.4"
+
+[libraries]
+spring-boot-starter-data-r2dbc = { group = "org.springframework.boot", name = "spring-boot-starter-data-r2dbc" }
+spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux" }
+spring-jdbc = { group = "org.springframework", name = "spring-jdbc" }
+spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+spring-boot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+
+reactor-kotlin-extensions = { group = "io.projectreactor.kotlin", name = "reactor-kotlin-extensions" }
+kotlinx-coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-reactor" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
+
+postgres = { group = "org.postgresql", name = "postgresql" }
+r2dbc-postgresql = { group = "org.postgresql", name = "r2dbc-postgresql" }
+jackson = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin" }
+flyway = { group = "org.flywaydb", name = "flyway-core" }
+
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring-boot-testcontainers = { group = "org.springframework.boot", name = "spring-boot-testcontainers" }
+reactor-test = { group = "io.projectreactor", name = "reactor-test" }
+junit-jupiter = { group = "org.testcontainers", name = "junit-jupiter" }
+postgresql = { group = "org.testcontainers", name = "postgresql" }
+r2dbc = { group = "org.testcontainers", name = "r2dbc" }
+
+[bundles]
+spring = [
+    "spring-boot-starter-data-r2dbc",
+    "spring-boot-starter-webflux",
+    "spring-jdbc",
+]
+
+test = [
+    "spring-boot-starter-test",
+    "spring-boot-testcontainers",
+    "reactor-test",
+    "junit-jupiter",
+    "postgresql",
+    "r2dbc",
+]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springVersion" }
+dependency-management = { id = "io.spring.dependency-management", version.ref = "dependencyManagementVersion" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }

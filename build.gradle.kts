@@ -1,14 +1,14 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "3.2.5"
-	id("io.spring.dependency-management") version "1.1.4"
-	kotlin("jvm") version "1.9.23"
-	kotlin("plugin.spring") version "1.9.23"
+	alias(libs.plugins.spring.boot)
+	alias(libs.plugins.dependency.management)
+	alias(libs.plugins.kotlin.jvm)
+	alias(libs.plugins.kotlin.spring)
 }
 
 group = "nl.jaysh"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
@@ -19,24 +19,21 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-	implementation("org.flywaydb:flyway-core")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-	implementation("org.springframework:spring-jdbc")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	developmentOnly("org.springframework.boot:spring-boot-docker-compose")
-	runtimeOnly("org.postgresql:postgresql")
-	runtimeOnly("org.postgresql:r2dbc-postgresql")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.boot:spring-boot-testcontainers")
-	testImplementation("io.projectreactor:reactor-test")
-	testImplementation("org.testcontainers:junit-jupiter")
-	testImplementation("org.testcontainers:postgresql")
-	testImplementation("org.testcontainers:r2dbc")
+	implementation(libs.bundles.spring)
+
+	implementation(libs.jackson)
+	implementation(libs.reactor.kotlin.extensions)
+	implementation(libs.flyway)
+	implementation(libs.kotlin.reflect)
+	implementation(libs.kotlinx.coroutines.reactor)
+
+	developmentOnly(libs.spring.boot.devtools)
+	developmentOnly(libs.spring.boot.docker.compose)
+
+	runtimeOnly(libs.postgres)
+	runtimeOnly(libs.r2dbc.postgresql)
+
+	testImplementation(libs.bundles.test)
 }
 
 tasks.withType<KotlinCompile> {
