@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -5,6 +7,7 @@ plugins {
 	alias(libs.plugins.dependency.management)
 	alias(libs.plugins.kotlin.jvm)
 	alias(libs.plugins.kotlin.spring)
+	alias(libs.plugins.detekt)
 }
 
 group = "nl.jaysh"
@@ -16,6 +19,11 @@ java {
 
 repositories {
 	mavenCentral()
+}
+
+detekt {
+	buildUponDefaultConfig = true
+	allRules = false
 }
 
 dependencies {
@@ -45,4 +53,21 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.withType<Detekt>().configureEach {
+	reports {
+		html.required.set(true)
+		xml.required.set(true)
+		txt.required.set(true)
+		sarif.required.set(true)
+		md.required.set(true)
+	}
+}
+
+tasks.withType<Detekt>().configureEach {
+	jvmTarget = "21"
+}
+tasks.withType<DetektCreateBaselineTask>().configureEach {
+	jvmTarget = "21"
 }

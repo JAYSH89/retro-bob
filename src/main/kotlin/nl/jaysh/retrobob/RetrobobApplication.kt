@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class RetrobobApplication
 
 fun main(args: Array<String>) {
-	runApplication<RetrobobApplication>(*args)
+	runApplication<RetrobobApplication>(args = args)
 }
